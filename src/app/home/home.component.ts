@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
 import { FlexLayoutModule } from "@angular/flex-layout";
+import {PlatformLocation } from '@angular/common';
 import {ToasterModule, ToasterContainerComponent, ToasterService, ToasterConfig} from 'angular2-toaster';
 // import { CarouselModule,CarouselComponent,SlideComponent } from 'angular-bootstrap-md/carousel';
 
@@ -17,7 +18,7 @@ export class HomeComponent implements OnInit {
     model: any = {};
     returnUrl: string;
     loading = false;
-
+    meImg = "";
     // Image Carousel
     public slides = [
         {
@@ -37,9 +38,16 @@ export class HomeComponent implements OnInit {
     constructor(
         public router: Router,
         private route: ActivatedRoute,
-        ) { }
+        private platformLocation:PlatformLocation
+        ) { 
+            console.log((platformLocation as any).location);
+            console.log((platformLocation as any).location.href);
+            console.log((platformLocation as any).location.origin);
+            this.meImg = (platformLocation as any).location.href + 'assets/img/me.jpg';
+        }
 
     ngOnInit() { 
+        
         
     }
 }
